@@ -12,11 +12,17 @@ import SwiftUI
 // ImportFileMenager - дозволяє вибирати аудіофайли та імпортувати їх у додаток
 struct ImportFileMenager: UIViewControllerRepresentable {
     
+    @Binding var songs: [SongModel]
+    
+    
     func makeCoordinator() -> Coordinator {
         Coordinator(parent: self)
     }
     
+    // Метод який створює та налаштовує UIDocumentPickerViewController який використовуєтся для вибору аудиофайлів
     func makeUIViewController(context: Context) -> UIDocumentPickerViewController {
+        let picker = UIDocumentPickerViewController(documentTypes: ["public.audio"], in: .import)
+        let picker = UIDocumentPickerViewController(documentTypes: ["public.audio"], in: .import)
         
     }
     
@@ -35,7 +41,5 @@ struct ImportFileMenager: UIViewControllerRepresentable {
             self.parent = parent
         }
         
-        
-    
     }
 }
