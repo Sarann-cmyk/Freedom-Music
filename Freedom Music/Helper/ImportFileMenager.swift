@@ -21,10 +21,20 @@ struct ImportFileMenager: UIViewControllerRepresentable {
     
     // Метод який створює та налаштовує UIDocumentPickerViewController який використовуєтся для вибору аудиофайлів
     func makeUIViewController(context: Context) -> UIDocumentPickerViewController {
-        let picker = UIDocumentPickerViewController(documentTypes: ["public.audio"], in: .import)
-        let picker = UIDocumentPickerViewController(documentTypes: ["public.audio"], in: .import)
-      
         
+        // Дозвіл відкривати файли з типом "public.audio"
+        let picker = UIDocumentPickerViewController(documentTypes: ["public.audio"], in: .open)
+        
+        // Дозвіл вибирати тільки один файл
+        picker.allowsMultipleSelection = false
+        
+        // Дозвіл показувати тип файлу
+        picker.shouldShowFileExtensions = true
+        
+        // Встановлення координатора в якості делегата
+        picker.delegate = context.coordinator
+         
+        return picker
     }
     
     func updateUIViewController(_ uiView: UIViewControllerType, context: Context) {
@@ -32,7 +42,7 @@ struct ImportFileMenager: UIViewControllerRepresentable {
     }
 
     // Координатор є зявзком між UIDocumentPicker та ImportFileMenager
-    class Coordinator {
+    class Coordinator: NSObject, UIDocumentPickerDelegate {
         
         
         // Це посилання на батьківський компонент ImportFileMenager щоб була можливість з ним взаємодіяти
@@ -42,5 +52,8 @@ struct ImportFileMenager: UIViewControllerRepresentable {
             self.parent = parent
         }
         
+        func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+            
+        }
     }
 }
