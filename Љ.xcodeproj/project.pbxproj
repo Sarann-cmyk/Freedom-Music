@@ -6,13 +6,45 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		E2B4E2E22D7B7CD200742669 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E2B4E2E12D7B7CD200742669 /* RealmSwift */; };
+		E2B4E2E32D7B7CE600742669 /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = E2B4E2E12D7B7CD200742669 /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E2D60D7B2D76341300479647 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 8;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				E2B4E2E32D7B7CE600742669 /* RealmSwift in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		E2FFE4B72D6DC63400CD8D46 /* Freedom Music.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Freedom Music.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		E2B4E2DF2D7B7C8E00742669 /* Exceptions for "Freedom Music" folder in "Freedom Music" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Frameworks/RealmSwift.framework,
+			);
+			target = E2FFE4B62D6DC63400CD8D46 /* Freedom Music */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		E2FFE4B92D6DC63400CD8D46 /* Freedom Music */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				E2B4E2DF2D7B7C8E00742669 /* Exceptions for "Freedom Music" folder in "Freedom Music" target */,
+			);
 			path = "Freedom Music";
 			sourceTree = "<group>";
 		};
@@ -23,6 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2B4E2E22D7B7CD200742669 /* RealmSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -55,6 +88,7 @@
 				E2FFE4B32D6DC63400CD8D46 /* Sources */,
 				E2FFE4B42D6DC63400CD8D46 /* Frameworks */,
 				E2FFE4B52D6DC63400CD8D46 /* Resources */,
+				E2D60D7B2D76341300479647 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -65,6 +99,7 @@
 			);
 			name = "Freedom Music";
 			packageProductDependencies = (
+				E2B4E2E12D7B7CD200742669 /* RealmSwift */,
 			);
 			productName = "Freedom Music";
 			productReference = E2FFE4B72D6DC63400CD8D46 /* Freedom Music.app */;
@@ -77,6 +112,9 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
+				KnownAssetTags = (
+					New,
+				);
 				LastSwiftUpdateCheck = 1620;
 				LastUpgradeCheck = 1620;
 				TargetAttributes = {
@@ -94,6 +132,9 @@
 			);
 			mainGroup = E2FFE4AE2D6DC63400CD8D46;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				E2B4E2E02D7B7CD200742669 /* XCRemoteSwiftPackageReference "realm-swift" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = E2FFE4B82D6DC63400CD8D46 /* Products */;
 			projectDirPath = "";
@@ -251,9 +292,19 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Freedom Music/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "Freedom\\ Music/Preview\\ Content";
+				DEVELOPMENT_TEAM = 9CYR3K5YHR;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Freedom\\ Music/Frameworks",
+					"$(PROJECT_DIR)/Freedom\\ Music/Frameworks",
+					"$(PROJECT_DIR)/Freedom\\ Music/Frameworks",
+					"$(PROJECT_DIR)/Freedom\\ Music/Frameworks",
+					"$(PROJECT_DIR)/Freedom\\ Music/Frameworks",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Freedom-Music-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -266,9 +317,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "WINNER.LTD.Freedom-Music";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -279,9 +334,19 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Freedom Music/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "Freedom\\ Music/Preview\\ Content";
+				DEVELOPMENT_TEAM = 9CYR3K5YHR;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Freedom\\ Music/Frameworks",
+					"$(PROJECT_DIR)/Freedom\\ Music/Frameworks",
+					"$(PROJECT_DIR)/Freedom\\ Music/Frameworks",
+					"$(PROJECT_DIR)/Freedom\\ Music/Frameworks",
+					"$(PROJECT_DIR)/Freedom\\ Music/Frameworks",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Freedom-Music-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -294,9 +359,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "WINNER.LTD.Freedom-Music";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -322,6 +391,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E2B4E2E02D7B7CD200742669 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E2B4E2E12D7B7CD200742669 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E2B4E2E02D7B7CD200742669 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E2FFE4AF2D6DC63400CD8D46 /* Project object */;
 }
