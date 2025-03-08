@@ -7,20 +7,30 @@
 
 import SwiftUI
 import RealmSwift
+import AVFoundation
 
 
 struct PlayerView: View {
     
+    
+    
     // MARK: - Properties
     @ObservedResults(SongModel.self) var songs
     @StateObject var vm = ViewModel()
-    @State  private var showFiles = false
-    @State  private var showFullPlayer = false
+    @State private var showFiles = false
+    @State private var showFullPlayer = true
     @Namespace private var playerAnimation
- 
+
+    
+    
+    
+    
+    
     var frameImage: CGFloat {
         showFullPlayer ? 320 : 50
     }
+    
+
     
     // MARK: - Body
     var body: some View {
@@ -148,6 +158,10 @@ struct PlayerView: View {
                     
                     HStack(spacing: 40) {
                         
+                        CustomButton(image: "gobackward.10", size: .title2) {
+                            vm.skipBackward(by: 10)
+                        }
+                        
                         CustomButton(image: "backward.end.fill", size: .title2) {
                             vm.backward()
                         }
@@ -159,12 +173,19 @@ struct PlayerView: View {
                         CustomButton(image: "forward.end.fill", size: .title2) {
                             vm.forward()
                         }
+                        
+                        CustomButton(image: "goforward.10", size: .title2) {
+                            vm.skipForward(by: 10)
+                        }
                     }
                 }
                 .padding(.horizontal, 30)
             }
         }
     }
+    
+
+    
     
     private func CustomButton(image: String, size: Font, action: @escaping () -> () ) -> some
     View {
