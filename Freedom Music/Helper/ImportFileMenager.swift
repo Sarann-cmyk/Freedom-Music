@@ -8,13 +8,11 @@
 import Foundation
 import SwiftUI
 import AVFoundation
+import RealmSwift
 
 
 // ImportFileMenager - дозволяє вибирати аудіофайли та імпортувати їх у додаток
 struct ImportFileMenager: UIViewControllerRepresentable {
-    
-    @Binding var songs: [SongModel]
-    
     
     func makeCoordinator() -> Coordinator {
         Coordinator(parent: self)
@@ -45,14 +43,17 @@ struct ImportFileMenager: UIViewControllerRepresentable {
     // Координатор є зявзком між UIDocumentPicker та ImportFileMenager
     class Coordinator: NSObject, UIDocumentPickerDelegate {
         
-        
+        // MARK: - Properties
         // Це посилання на батьківський компонент ImportFileMenager щоб була можливість з ним взаємодіяти
         var parent: ImportFileMenager
+        @ObservedResults(SongModel.self) var songs
         
+        // MARK: - Initializer
         init(parent: ImportFileMenager) {
             self.parent = parent
         }
         
+        // MARK: - Methods
         // Цей метод викликлаєтся коли користувач обирає пісню
         // Так цей метод опрацьовує та створює пісню типом SongModel та потім додає пісню до масиву SongModel
         func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
@@ -96,13 +97,13 @@ struct ImportFileMenager: UIViewControllerRepresentable {
                 // Отримання тривалості пісні
                 song.duration = CMTimeGetSeconds(asset.duration)
                 
+                let isDuplicate = songs.contains { $0.name == song.name && $0.artist == song.artist }
+                
                 // Додавання пісні в масив song якщо там ще такої немає
-                if !self.parent.songs.contains(where: { $0.name == song.name }) {
-                    DispatchQueue.main.async {
-                        self.parent.songs.append(song)
-                    }
+                if !isDuplicate {
+                  $songs.append(song)
                 } else {
-                    print("Song with name \(song.name) already exist")
+                    print("Song with name already exist")
                 }   
                 
             } catch {

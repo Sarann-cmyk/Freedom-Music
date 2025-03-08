@@ -11,14 +11,14 @@ struct SongCell: View {
     
     // MARK: - Properties
     let song: SongModel
+    let durationFormated: (TimeInterval) -> String
     
     // MARK: - Body
     var body: some View {
         HStack {
-            Color.white
-                .frame(width: 60, height: 60)
-                .cornerRadius(10)
             
+            SongImageView(imageData: song.coverImage, size: 60)
+
             VStack(alignment: .leading) {
                 Text(song.name)
                     .nameFont()
@@ -29,10 +29,14 @@ struct SongCell: View {
             
             Spacer()
             
-            Text("03:48")
-                .artistFont()
+            if let duration = song.duration {
+                Text(durationFormated(duration))
+                    .artistFont()
+                
+                
+                
+            }
         }
-        
         .listRowBackground(Color.clear)
         .listRowSeparator(.hidden)
     }
@@ -40,5 +44,5 @@ struct SongCell: View {
 
 
 #Preview {
-    SongCell(song: SongModel(name: "Hurt", data: Data(), artist: "Johnny Cash", coverImage: nil, duration: nil))
+   PlayerView()
 }

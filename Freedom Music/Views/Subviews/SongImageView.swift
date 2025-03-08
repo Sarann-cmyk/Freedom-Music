@@ -8,11 +8,37 @@
 import SwiftUI
 
 struct SongImageView: View {
+    
+    // MARK: - Propertise
+    let imageData: Data?
+    let size: CGFloat
+    
+    // MARK: - Body
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
+        if let data = imageData, let uiImage = UIImage(data: data) {
+            Image(uiImage: uiImage)
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(width: size, height: size)
+                .clipShape(RoundedRectangle(cornerRadius: 10))
+          // Якщо не буде coverImage, тоді показуй ось це...
+        } else {
+            ZStack {
+                Color.gray
+                    .frame(width: size, height: size)
+                Image(systemName: "music.note")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(height: size / 2)
+                    .foregroundColor(.white)
+            }
+            .cornerRadius(10)
+            
+        }
     }
 }
 
 #Preview {
-    SongImageView()
+    SongImageView(imageData: Data(), size: 200)
 }
