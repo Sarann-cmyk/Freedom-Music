@@ -8,6 +8,8 @@
 import Foundation
 import AVFAudio
 import RealmSwift
+import AVFoundation
+
 
 
 class ViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
@@ -20,7 +22,6 @@ class ViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
     @Published var currentTime: TimeInterval = 0.0
     @Published var totalTime: TimeInterval = 0.0
     
-    
     var currentSong: SongModel? {
         guard let currentIndex = currentIndex, songs.indices.contains(currentIndex) else {
             return nil
@@ -28,13 +29,14 @@ class ViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
         return songs[currentIndex]
     }
     
-    
     // MARK: Methods
     func playAudio(song: SongModel) {
         do {
             self.audioPlayer = try AVAudioPlayer(data: song.data)
             self.audioPlayer?.delegate = self
             self.audioPlayer?.play()
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+            try AVAudioSession.sharedInstance().setActive(true)
             isPlaying = true
             totalTime = audioPlayer?.duration ?? 0.0
             if let index = songs.firstIndex(where: { $0.id == song.id}) {
@@ -42,6 +44,22 @@ class ViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
             }
         } catch {
             print("Error in audio playback: \(error.localizedDescription)")
+        }
+    }
+    
+    func skipForward(by seconds: TimeInterval) {
+        guard let player = audioPlayer else { return }
+        player.currentTime += seconds
+        if player.currentTime > player.duration {
+            player.currentTime = player.duration
+        }
+    }
+
+    func skipBackward(by seconds: TimeInterval) {
+        guard let player = audioPlayer else { return }
+        player.currentTime -= seconds
+        if player.currentTime < 0 {
+            player.currentTime = 0
         }
     }
     
