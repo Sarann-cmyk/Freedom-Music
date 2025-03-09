@@ -158,23 +158,23 @@ struct PlayerView: View {
                     
                     HStack(spacing: 40) {
                         
-                        CustomButton(image: "gobackward.10", size: .title2) {
+                        CustomButton(image: "gobackward.10", size: .system(size: 25)) {
                             vm.skipBackward(by: 10)
                         }
                         
-                        CustomButton(image: "backward.end.fill", size: .title2) {
+                        CustomButton(image: "backward.end.fill", size: .system(size: 30)) {
                             vm.backward()
                         }
                         
-                        CustomButton(image: vm.isPlaying ? "pause.circle.fill" : "play.circle.fill", size: .largeTitle) {
+                        CustomButton(image: vm.isPlaying ? "pause.circle.fill" : "play.circle.fill", size: .system(size: 55)) {
                             vm.playPause()
                         }
                         
-                        CustomButton(image: "forward.end.fill", size: .title2) {
+                        CustomButton(image: "forward.end.fill", size: .system(size: 30)) {
                             vm.forward()
                         }
                         
-                        CustomButton(image: "goforward.10", size: .title2) {
+                        CustomButton(image: "goforward.10", size: .system(size: 25)) {
                             vm.skipForward(by: 10)
                         }
                     }
@@ -183,9 +183,6 @@ struct PlayerView: View {
             }
         }
     }
-    
-
-    
     
     private func CustomButton(image: String, size: Font, action: @escaping () -> () ) -> some
     View {
